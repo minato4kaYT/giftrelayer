@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Панель управления</title>
+
+    <!-- Подключаем шрифты и иконки -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f0f2f5;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .profile-info, .stats {
+            margin-bottom: 40px;
+            font-size: 18px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #3498db;
+            color: #fff;
+            padding: 12px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 18px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            animation: fadeIn 1s ease-out 0.5s forwards;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+        }
+
+        .btn:active {
+            background-color: #1f6f92;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+        }
+
+        .stat-box {
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-10px);
+        }
+
+        .stat-box h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .stat-box p {
+            font-size: 18px;
+            color: #7f8c8d;
+        }
+
+        /* Анимация для плавного появления элементов */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Добро пожаловать в панель управления, {{ user_data['first_name'] }}</h1>
+
+        <div class="profile-info">
+            <p>Имя: {{ user_data['first_name'] }} {{ user_data['last_name'] }}</p>
+            <p>Telegram ID: {{ user_data['id'] }}</p>
+            <a href="/logout" class="btn">Выйти</a>
+        </div>
+
+        <div class="stats">
+            <div class="stat-box">
+                <h3>Ваш баланс</h3>
+                <p>{{ user_data['stars'] }} ⭐</p>
+            </div>
+            <div class="stat-box">
+                <h3>Транзакции</h3>
+                <p>{{ transactions_count }} транзакций</p>
+            </div>
+            <div class="stat-box">
+                <h3>Активные NFT</h3>
+                <p>{{ active_nfts_count }} NFT</p>
+            </div>
+        </div>
+
+        <div class="btn-container">
+            <a href="/nft-shop" class="btn">Перейти в NFT Магазин</a>
+        </div>
+    </div>
+</body>
+
+</html>
